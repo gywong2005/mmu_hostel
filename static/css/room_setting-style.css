@@ -1,0 +1,168 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 800px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #ffffff;
+    margin: 50px 0 20px 0;
+    font-weight: bold;
+    text-align: center;
+}
+
+.alert {
+    padding: 15px;
+    background-color: #d9edf7;
+    color: #31708f;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+p {
+    font-size: 1.1em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.btn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Forms and form-group styles */
+#roomChangeForm, #swapRoomForm {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+textarea, input[type="text"], input[type="email"] {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+
+textarea, input[type="text"], input[type="email"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    
+}
+
+textarea {
+    height: 100px;
+}
+
+button[type="submit"] {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1em;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* Pending swap requests list styling */
+ul {
+    padding: 0;
+    list-style-type: none;
+}
+
+li {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+hr {
+    border-top: 1px solid #ccc;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
