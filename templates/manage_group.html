@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/manage_group-style.css') }}">
+{% endblock %}
+
+{% block content %}
+<h1 class="page-title">Manage Your Group</h1>
+<div class="parent-container">
+    <div class="manage-group-wrapper">
+        <div class="manage-group-container">
+            <div class="manage-group-header">
+                <h2>Group Members</h2>
+
+                {% if is_leader %}
+                    <div class="disband-container">
+                        <form action="{{ url_for('manage_group', group_id=group_id) }}" method="POST">
+                            <input type="hidden" name="suggest_roommates">
+                            <button type="submit">Suggested Roommates</button>
+                        </form>
+                        <form action="{{ url_for('disband_group', group_id=group_id) }}" method="post">
+                            <button type="submit" class="disband">Disband Group</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+            
+            <table>
+                <tr>
+                    <th>Student ID</th>
+                    <th>Name</th>
+                    <th>Faculty</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+                {% for member in members %}
+                <tr>
+                    <td>{{ member['id'] }}</td>
+                    <td>{{ member['name'] }}</td>
+                    <td>{{ member['faculty'] }}</td>
+                    <td>{% if member['is_leader'] %}Leader{% else %}Member{% endif %}</td>
+                    <td>
+                        {% if is_leader and member['id'] != current_user_id %}
+                            <div class="action-buttons-horizontal">
+                                <form action="{{ url_for('transfer_leadership', group_id=group_id, new_leader_id=member['id']) }}" method="post">
+                                    <button type="submit">Transfer Leadership</button>
+                                </form>
+                                <form action="{{ url_for('remove_member', group_id=group_id, member_id=member['id']) }}" method="post">
+                                    <button type="submit">Remove</button>
+                                </form>
+                            </div>
+                        {% elif member['id'] == current_user_id and not is_leader %}
+                            <form action="{{ url_for('leave_group', group_id=group_id) }}" method="post">
+                                <button type="submit">Leave Group</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            {% if is_leader %}
+            <div class="invite-member-header">
+                <h2>Invite New Members</h2>
+                <form action="{{ url_for('manage_group', group_id=group_id) }}" method="post">
+                    <input type="text" name="filter_student_id" placeholder="Enter Student ID">
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+
+                {% if request.method == 'POST' and students is not none %}
+                    {% if students %}
+                        <h3>Available Students</h3>
+                        <table>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Name</th>
+                                <th>Faculty</th>
+                                <th>Similarity</th>
+                                <th>Action</th>
+                            </tr>
+                            {% for student in students %}
+                            <tr>
+                                <td>{{ student['id'] }}</td>
+                                <td>{{ student['name'] }}</td>
+                                <td>{{ student['faculty'] }}</td>
+                                <td>{{ student['similarity'] }}%</td>
+                                <td>
+                                    <form action="{{ url_for('invite_user', group_id=group_id, invitee_id=student['id']) }}" method="post">
+                                        <input type="hidden" name="user_id" value="{{ student['id'] }}">
+                                        <button type="submit">Invite</button>
+                                    </form>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+                        </table>
+                    {% else %}
+                        <p>No students found with the given ID.</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <a href="{{ url_for('select_hostel', mode='group') }}" class="btn">
+                Continue to Hostel Selection
+            </a>
+            {% else %}
+                <p>Only the group leader can invite new members or proceed with booking.</p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

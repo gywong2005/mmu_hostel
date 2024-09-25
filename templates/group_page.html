@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/group_page-style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Group Booking</h1>
+    <form action="{{ url_for('group_page') }}" method="POST">
+        <label for="trimester">Create a New Group</label>
+        <button type="submit" name="group_action" value="create">Create Group</button>
+    </form>
+</div>
+{% endblock %}

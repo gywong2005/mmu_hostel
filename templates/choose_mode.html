@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/choose_mode-style.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Choose Your Booking Mode</h1>
+    <form action="{{ url_for('choose_mode') }}" method="POST">
+        <div class="dropdown-container">
+            <select id="booking-mode" name="mode" required>
+                <option value="" disabled selected>Select your booking mode</option>
+                <option value="individual">Individual Booking</option>
+                <option value="group">Group Booking</option>
+            </select>
+        </div>
+        <button type="submit">Continue</button>
+    </form>
+</div>
+{% endblock %}
